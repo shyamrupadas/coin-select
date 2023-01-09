@@ -1,7 +1,8 @@
 import s from './App.module.scss'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useTypedSelector } from './hooks/useTypedSelector';
 import { filteredCategoriesFromSelector, filteredCategoriesToSelector } from './store/categorySelectors';
+import { Button } from './components/Button';
 
 
 const filterMap: any = {
@@ -26,23 +27,28 @@ export const App = () => {
           <h3>Отдаете</h3>
         </header>
         <div className={s.buttons}>
-          <button className={s.button} onClick={
+          <Button onClick={
             () => {
               setFilterFrom('all')
               setFilterTo('all')
-            }}>Все</button>
-          <button className={s.button} onClick={() => {
+            }}>
+            Все
+          </Button>
+          <Button onClick={() => {
             setFilterFrom('crypto')
             setFilterTo('all')
-          }}>Криптовалюты</button>
-          <button className={s.button} onClick={() => {
+          }}>Криптовалюты
+          </Button>
+          <Button onClick={() => {
             setFilterFrom('cash')
             setFilterTo('all')
-          }}>Наличные</button>
-          <button className={s.button} onClick={() => {
+          }}>Наличные
+          </Button>
+          <Button onClick={() => {
             setFilterFrom('bank')
             setFilterTo('all')
-          }}>Банки RUB</button>
+          }}>Банки RUB
+          </Button>
         </div>
         <input type="text" />
         <select value={selected} onChange={(e) => setSelected(e.target.value)}>
@@ -57,10 +63,10 @@ export const App = () => {
           <h3>Получаете</h3>
         </header>
         <div className={s.buttons}>
-          <button className={s.button} onClick={() => setFilterTo('all')}>Все</button>
-          <button className={s.button} onClick={() => setFilterTo('crypto')}>Криптовалюты</button>
-          <button className={s.button} onClick={() => setFilterTo('cash')}>Наличные</button>
-          <button className={s.button} onClick={() => setFilterTo('bank')}>Банки RUB</button>
+          <Button onClick={() => setFilterTo('all')}>Все</Button>
+          <Button onClick={() => setFilterTo('crypto')}>Криптовалюты</Button>
+          <Button onClick={() => setFilterTo('cash')}>Наличные</Button>
+          <Button onClick={() => setFilterTo('bank')}>Банки RUB</Button>
         </div>
         <input type="text" />
         <select>
