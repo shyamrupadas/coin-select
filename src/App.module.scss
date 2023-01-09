@@ -7,6 +7,13 @@
 
 .app {
   width: 1280px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.flex {
+  display: flex;
 }
