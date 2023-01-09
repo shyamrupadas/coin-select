@@ -1,7 +1,21 @@
 import s from './App.module.scss'
+import { useState } from 'react';
+import { useTypedSelector } from './hooks/useTypedSelector';
+import { filteredCategoriesSelector } from './store/categorySlice';
 
-function App() {
 
+const filterMap: any = {
+  crypto: ['BTC', 'ETH', 'USDTTRC'],
+  bank: ['ACRUB', 'SBERRUB', 'TCSRUB'],
+  cash: ['CASHUSD', 'CASHRUB'],
+}
+
+export const App = () => {
+  const [filter, setFilter] = useState<string>('')
+
+  const directions = useTypedSelector(filteredCategoriesSelector(filter ? filterMap[filter] : 'all'))
+
+  console.log(directions)
   return (
     <div className={s.app}>
       <div>
@@ -15,7 +29,13 @@ function App() {
           <h4>Банки RUB</h4>
           <h4>Банки UAH</h4>
         </div>
-        <input type="text" /><select></select>
+        <input type="text" />
+        <select>
+          {directions.map((direction) => (
+              <option key={direction.code} value={direction.code}>{direction.name}</option>
+            )
+          )}
+        </select>
       </div>
       <div>
         <header>
@@ -34,4 +54,3 @@ function App() {
   )
 }
 
-export default App
