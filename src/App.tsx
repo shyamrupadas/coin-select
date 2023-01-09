@@ -1,37 +1,52 @@
 import s from './App.module.scss'
 import { useState } from 'react';
 import { useTypedSelector } from './hooks/useTypedSelector';
-import { filteredCategoriesSelector } from './store/categorySlice';
+import { filteredCategoriesFromSelector, filteredCategoriesToSelector } from './store/categorySelectors';
 
 
 const filterMap: any = {
+  all: [],
   crypto: ['BTC', 'ETH', 'USDTTRC'],
   bank: ['ACRUB', 'SBERRUB', 'TCSRUB'],
   cash: ['CASHUSD', 'CASHRUB'],
 }
 
 export const App = () => {
-  const [filter, setFilter] = useState<string>('')
+  const [filterFrom, setFilterFrom] = useState<'crypto' | 'bank' | 'cash' | 'all'>('all')
+  const [filterTo, setFilterTo] = useState<'crypto' | 'bank' | 'cash' | 'all'>('all')
+  const [selected, setSelected] = useState('BTC')
 
-  const directions = useTypedSelector(filteredCategoriesSelector(filter ? filterMap[filter] : 'all'))
+  const fromItems = useTypedSelector(filteredCategoriesFromSelector(filterMap[filterFrom]))
+  const toItems = useTypedSelector(filteredCategoriesToSelector(selected, filterMap[filterTo]))
 
-  console.log(directions)
   return (
     <div className={s.app}>
       <div>
         <header>
           <h3>Отдаете</h3>
         </header>
-        <div className={s.flex}>
-          <h4>Все</h4>
-          <h4>Криптовалюты</h4>
-          <h4>Наличные</h4>
-          <h4>Банки RUB</h4>
-          <h4>Банки UAH</h4>
+        <div className={s.buttons}>
+          <button className={s.button} onClick={
+            () => {
+              setFilterFrom('all')
+              setFilterTo('all')
+            }}>Все</button>
+          <button className={s.button} onClick={() => {
+            setFilterFrom('crypto')
+            setFilterTo('all')
+          }}>Криптовалюты</button>
+          <button className={s.button} onClick={() => {
+            setFilterFrom('cash')
+            setFilterTo('all')
+          }}>Наличные</button>
+          <button className={s.button} onClick={() => {
+            setFilterFrom('bank')
+            setFilterTo('all')
+          }}>Банки RUB</button>
         </div>
         <input type="text" />
-        <select>
-          {directions.map((direction) => (
+        <select value={selected} onChange={(e) => setSelected(e.target.value)}>
+          {fromItems.map((direction) => (
               <option key={direction.code} value={direction.code}>{direction.name}</option>
             )
           )}
@@ -41,14 +56,19 @@ export const App = () => {
         <header>
           <h3>Получаете</h3>
         </header>
-        <div className={s.flex}>
-          <h4>Все</h4>
-          <h4>Криптовалюты</h4>
-          <h4>Банки RUB</h4>
-          <h4>Банки UAH</h4>
-          <h4>Наличные</h4>
+        <div className={s.buttons}>
+          <button className={s.button} onClick={() => setFilterTo('all')}>Все</button>
+          <button className={s.button} onClick={() => setFilterTo('crypto')}>Криптовалюты</button>
+          <button className={s.button} onClick={() => setFilterTo('cash')}>Наличные</button>
+          <button className={s.button} onClick={() => setFilterTo('bank')}>Банки RUB</button>
         </div>
-        <input type="text" /><select></select>
+        <input type="text" />
+        <select>
+          {toItems?.map((direction) => (
+              <option key={direction.code} value={direction.code}>{direction.name}</option>
+            )
+          )}
+        </select>
       </div>
     </div>
   )

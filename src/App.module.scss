@@ -17,3 +17,13 @@
 .flex {
   display: flex;
 }
+
+.buttons {
+  display: flex;
+
+  .button {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+}

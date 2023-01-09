@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from './index';
-
 interface Direction {
   code: string,
   name: string
@@ -324,18 +322,6 @@ export const categorySlice = createSlice({
   initialState,
   reducers: {
   },
-  extraReducers: builder => {
-  },
 });
 
 export default categorySlice.reducer;
-
-export const filteredCategoriesSelector = (filter: string) => (state: RootState) => {
-  const directions = state.categorySlice.directions
-
-  if(filter === 'all') {
-    return directions
-  }
-
-  return directions.filter(el => filter.includes(el.code))
-}
