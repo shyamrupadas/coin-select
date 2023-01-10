@@ -9,7 +9,6 @@ interface IButton {
 
 export const Button: FC<IButton> = ({ children, onClick, active }) => {
 
-  console.log(active)
   return (
     <button className={`${s.button} ${active ? s.active : ''}`} onClick={onClick}>
       {children}

@@ -27,7 +27,7 @@ export const App = () => {
     <>
       <div>
         <header>
-          <h3>Отдаете</h3>
+          <h3 className={s.header}>Отдаете</h3>
         </header>
         <div className={s.buttons}>
           <Button onClick={
@@ -61,20 +61,22 @@ export const App = () => {
           >Банки RUB
           </Button>
         </div>
-        <input type="text" />
-        <select value={selected} onChange={(e) => {
-          setSelected(e.target.value)
-          setFilterTo('all')
-        }}>
-          {fromItems.map((direction) => (
-              <option key={direction.code} value={direction.code}>{direction.name}</option>
-            )
-          )}
-        </select>
+        <div className={s.select}>
+          <input type="text" />
+          <select value={selected} onChange={(e) => {
+            setSelected(e.target.value)
+            setFilterTo('all')
+          }}>
+            {fromItems.map((direction) => (
+                <option key={direction.code} value={direction.code}>{direction.name}</option>
+              )
+            )}
+          </select>
+        </div>
       </div>
       <div>
         <header>
-          <h3>Получаете</h3>
+          <h3 className={s.header}>Получаете</h3>
         </header>
         <div className={s.buttons}>
           <Button onClick={() => setFilterTo('all')}
@@ -90,13 +92,15 @@ export const App = () => {
                   active={filterTo === 'bank'}
           >Банки</Button>
         </div>
-        <input type="text" />
-        <select>
-          {toItems?.map((direction) => (
-              <option key={direction.code} value={direction.code}>{direction.name}</option>
-            )
-          )}
-        </select>
+        <div className={s.select}>
+          <input type="text" />
+          <select>
+            {toItems?.map((direction) => (
+                <option key={direction.code} value={direction.code}>{direction.name}</option>
+              )
+            )}
+          </select>
+        </div>
       </div>
     </>
   )
