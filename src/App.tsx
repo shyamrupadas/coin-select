@@ -4,15 +4,22 @@ import { useTypedSelector } from './hooks/useTypedSelector'
 import { filteredCategoriesFromSelector, filteredCategoriesToSelector } from './store/categorySelectors'
 import { Button } from './components/Button'
 
-
 const filterMap: any = {
   all: [],
   crypto: ['BTC', 'ETH', 'USDTTRC'],
   bank: ['ACRUB', 'SBERRUB', 'TCSRUB'],
   cash: ['CASHUSD', 'CASHRUB'],
 }
+interface IButton { id: FilterType, label: string }
 
-export type FilterType = 'crypto' | 'bank' | 'cash' | 'all'
+const buttons: IButton[] = [
+  { id: 'all', label: 'Все' },
+  { id: 'crypto', label: 'Криптовалюты' },
+  { id: 'bank', label: 'Банки' },
+  { id: 'cash', label: 'Наличные' },
+]
+
+export type FilterType = 'all' | 'crypto' | 'bank' | 'cash'
 
 export const App = () => {
   const [filterFrom, setFilterFrom] = useState<FilterType>('all')
@@ -30,36 +37,16 @@ export const App = () => {
           <h3 className={s.header}>Отдаете</h3>
         </header>
         <div className={s.buttons}>
-          <Button onClick={
-            () => {
-              setFilterFrom('all')
-              setFilterTo('all')
-            }}
-                  active={filterFrom === 'all'}
-          >
-            Все
-          </Button>
-          <Button onClick={() => {
-            setFilterFrom('crypto')
-            setFilterTo('all')
-          }}
-                  active={filterFrom === 'crypto'}
-          >Криптовалюты
-          </Button>
-          <Button onClick={() => {
-            setFilterFrom('cash')
-            setFilterTo('all')
-          }}
-                  active={filterFrom === 'cash'}
-          >Наличные
-          </Button>
-          <Button onClick={() => {
-            setFilterFrom('bank')
-            setFilterTo('all')
-          }}
-                  active={filterFrom === 'bank'}
-          >Банки RUB
-          </Button>
+          {buttons.map(button => (
+            <Button onClick={
+              () => {
+                setFilterFrom(button.id)
+                setFilterTo(button.id)
+              }}
+                    active={filterFrom === button.id}>
+              {button.label}
+            </Button>
+          ))}
         </div>
         <div className={s.select}>
           <input type="text" />
@@ -79,18 +66,15 @@ export const App = () => {
           <h3 className={s.header}>Получаете</h3>
         </header>
         <div className={s.buttons}>
-          <Button onClick={() => setFilterTo('all')}
-                  active={filterTo === 'all'}
-          >Все</Button>
-          <Button onClick={() => setFilterTo('crypto')}
-                  active={filterTo === 'crypto'}
-          >Криптовалюты</Button>
-          <Button onClick={() => setFilterTo('cash')}
-                  active={filterTo === 'cash'}
-          >Наличные</Button>
-          <Button onClick={() => setFilterTo('bank')}
-                  active={filterTo === 'bank'}
-          >Банки</Button>
+          {buttons.map(button => (
+            <Button onClick={
+              () => {
+                setFilterTo(button.id)
+              }}
+                    active={filterTo === button.id}>
+              {button.label}
+            </Button>
+          ))}
         </div>
         <div className={s.select}>
           <input type="text" />
