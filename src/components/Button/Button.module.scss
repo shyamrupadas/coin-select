@@ -6,12 +6,10 @@
   &:hover {
     color: white;
     background: #f0807f;
-
   }
 
-  &:active {
-    color: blue;
-    border: black 1px solid;
-    border-radius: 5px;
+  &.active {
+    color: white;
+    background: #f0807f;
   }
 }
