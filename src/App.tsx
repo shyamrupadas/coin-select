@@ -36,12 +36,16 @@ export const App = () => {
 
   const handleFromButtonClick = (id: FilterType) => {
     setFilterFrom(id)
-    setFilterTo('all')
+    resetFilterTo()
     setSelected(fromItems[0].code)
   }
 
   const handleToButtonClick = (id: FilterType) => {
     setFilterTo(id)
+  }
+
+  const resetFilterTo = () => {
+    setFilterTo('all')
   }
 
   return (
@@ -64,7 +68,7 @@ export const App = () => {
           <input type="text" />
           <select value={selected} onChange={(e) => {
             setSelected(e.target.value)
-            setFilterTo('all')
+            resetFilterTo()
           }}>
             {fromItems.map((direction) => (
                 <option key={direction.code} value={direction.code}>{direction.name}</option>
