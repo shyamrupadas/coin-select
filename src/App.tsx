@@ -10,7 +10,11 @@ const filterMap: any = {
   bank: ['ACRUB', 'SBERRUB', 'TCSRUB'],
   cash: ['CASHUSD', 'CASHRUB'],
 }
-interface IButton { id: FilterType, label: string }
+
+interface IButton {
+  id: FilterType,
+  label: string
+}
 
 const buttons: IButton[] = [
   { id: 'all', label: 'Все' },
@@ -30,7 +34,16 @@ export const App = () => {
   const fromItems = useTypedSelector(filteredCategoriesFromSelector(filterMap[filterFrom]))
   const toItems = useTypedSelector(filteredCategoriesToSelector(selected, filterMap[filterTo]))
 
-  console.log(selected)
+  const handleFromButtonClick = (id: FilterType) => {
+    setFilterFrom(id)
+    setFilterTo('all')
+    setSelected(fromItems[0].code)
+  }
+
+  const handleToButtonClick = (id: FilterType) => {
+    setFilterTo(id)
+  }
+
   return (
     <>
       <div>
@@ -41,13 +54,8 @@ export const App = () => {
           {buttons.map(button => (
             <Button
               key={button.id}
-              onClick={
-              () => {
-                setFilterFrom(button.id)
-                setFilterTo('all')
-                setSelected(fromItems[0].code)
-              }}
-                    active={filterFrom === button.id}>
+              onClick={() => handleFromButtonClick(button.id)}
+              active={filterFrom === button.id}>
               {button.label}
             </Button>
           ))}
@@ -73,11 +81,8 @@ export const App = () => {
           {buttons.map(button => (
             <Button
               key={button.id}
-              onClick={
-              () => {
-                setFilterTo(button.id)
-              }}
-                    active={filterTo === button.id}>
+              onClick={() => handleToButtonClick(button.id)}
+              active={filterTo === button.id}>
               {button.label}
             </Button>
           ))}
