@@ -1,8 +1,8 @@
-import s from './App.module.scss'
 import React, { useState } from 'react'
 import { useTypedSelector } from './hooks/useTypedSelector'
 import { filteredCategoriesFromSelector, filteredCategoriesToSelector } from './store/categorySelectors'
 import { Button } from './components/Button'
+import s from './App.module.scss'
 
 const filterMap: any = {
   all: [],
@@ -30,6 +30,7 @@ export const App = () => {
   const fromItems = useTypedSelector(filteredCategoriesFromSelector(filterMap[filterFrom]))
   const toItems = useTypedSelector(filteredCategoriesToSelector(selected, filterMap[filterTo]))
 
+  console.log(selected)
   return (
     <>
       <div>
@@ -38,10 +39,13 @@ export const App = () => {
         </header>
         <div className={s.buttons}>
           {buttons.map(button => (
-            <Button onClick={
+            <Button
+              key={button.id}
+              onClick={
               () => {
                 setFilterFrom(button.id)
-                setFilterTo(button.id)
+                setFilterTo('all')
+                setSelected(fromItems[0].code)
               }}
                     active={filterFrom === button.id}>
               {button.label}
@@ -67,7 +71,9 @@ export const App = () => {
         </header>
         <div className={s.buttons}>
           {buttons.map(button => (
-            <Button onClick={
+            <Button
+              key={button.id}
+              onClick={
               () => {
                 setFilterTo(button.id)
               }}
