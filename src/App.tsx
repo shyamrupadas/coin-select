@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { useTypedSelector } from './hooks/useTypedSelector'
 import { filteredCategoriesFromSelector, filteredCategoriesToSelector } from './store/categorySelectors'
 import { Button } from './components/Button'
 import s from './App.module.scss'
+import { useSelector } from 'react-redux';
 
 const filterMap: any = {
   all: [],
@@ -31,8 +31,8 @@ export const App = () => {
 
   const [selected, setSelected] = useState('BTC')
 
-  const fromItems = useTypedSelector(filteredCategoriesFromSelector(filterMap[filterFrom]))
-  const toItems = useTypedSelector(filteredCategoriesToSelector(selected, filterMap[filterTo]))
+  const fromItems = useSelector(filteredCategoriesFromSelector(filterMap[filterFrom]))
+  const toItems = useSelector(filteredCategoriesToSelector(selected, filterMap[filterTo]))
 
   const handleFromButtonClick = (id: FilterType) => {
     setFilterFrom(id)
@@ -47,6 +47,9 @@ export const App = () => {
   const resetFilterTo = () => {
     setFilterTo('all')
   }
+
+  console.log(selected)
+  console.log(fromItems[0].code)
 
   return (
     <>
