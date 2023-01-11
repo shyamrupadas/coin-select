@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import categorySlice from './categorySlice'
 import { useDispatch } from 'react-redux';
+import directionsSlice from './directionsSlice';
 
 const rootReducer = combineReducers({
-  categorySlice
+  categorySlice,
+  directionsSlice,
 });
 
 export const store = configureStore({

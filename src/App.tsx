@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { filteredCategoriesFromSelector, filteredCategoriesToSelector } from './store/categorySelectors'
 import { Button } from './components/Button'
 import s from './App.module.scss'
 import { useSelector } from 'react-redux';
+import { useAppDispatch } from './store';
+import { setDirections } from './store/directionsSlice';
+import { directions, filters } from './api';
 
 const filterMap: any = {
   all: [],
@@ -26,6 +29,12 @@ const buttons: IButton[] = [
 export type FilterType = 'all' | 'crypto' | 'bank' | 'cash'
 
 export const App = () => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(setDirections({directions, filters}))
+  }, [dispatch])
+
   const [filterFrom, setFilterFrom] = useState<FilterType>('all')
   const [filterTo, setFilterTo] = useState<FilterType>('all')
 
@@ -47,9 +56,6 @@ export const App = () => {
   const resetFilterTo = () => {
     setFilterTo('all')
   }
-
-  console.log(selected)
-  console.log(fromItems[0].code)
 
   return (
     <>
