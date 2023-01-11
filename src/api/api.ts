@@ -1,4 +1,4 @@
-export const directions = [
+const directions = [
   {
     "code": "BTC",
     "name": "Bitcoin BTC "
@@ -33,7 +33,7 @@ export const directions = [
   },
 ]
 
-export const filters = [
+const filters = [
   {
     "from": {
       "code": "BTC",
@@ -299,3 +299,12 @@ export const filters = [
     ]
   }
 ]
+
+const categories = {
+  all: { label: 'Все', directions: [] },
+  crypto: { label: 'Криптовалюты', directions: ['BTC', 'ETH', 'USDTTRC'] },
+  bank: { label: 'Банки', directions: ['ACRUB', 'SBERRUB', 'TCSRUB'] },
+  cash: { label: 'Наличные', directions: ['CASHUSD', 'CASHRUB'] },
+}
+
+export const data = {directions, filters, categories}

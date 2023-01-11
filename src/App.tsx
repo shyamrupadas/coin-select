@@ -4,8 +4,9 @@ import { Button } from './components/Button'
 import s from './App.module.scss'
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from './store';
-import { setDirections } from './store/directionsSlice';
-import { directions, filters } from './api';
+import { setCurrentCategory, setData } from './store/directionSlice';
+import { data } from './api';
+import { getCategories, getCategoryIds, getCurrentCategory, getCurrentDirection } from './store/directionSelectors';
 
 const filterMap: any = {
   all: [],
@@ -32,8 +33,13 @@ export const App = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(setDirections({directions, filters}))
+    dispatch(setData(data))
   }, [dispatch])
+
+  const currentCategory = useSelector(getCurrentCategory)
+  const currentDirection = useSelector(getCurrentDirection)
+  const categoryIds = useSelector(getCategoryIds)
+  const categories = useSelector(getCategories)
 
   const [filterFrom, setFilterFrom] = useState<FilterType>('all')
   const [filterTo, setFilterTo] = useState<FilterType>('all')
@@ -47,6 +53,7 @@ export const App = () => {
     setFilterFrom(id)
     resetFilterTo()
     setSelected(fromItems[0].code)
+    dispatch(setCurrentCategory(id))
   }
 
   const handleToButtonClick = (id: FilterType) => {
@@ -64,12 +71,13 @@ export const App = () => {
           <h3 className={s.header}>Отдаете</h3>
         </header>
         <div className={s.buttons}>
-          {buttons.map(button => (
+          {categoryIds.map((id: any) => (
             <Button
-              key={button.id}
-              onClick={() => handleFromButtonClick(button.id)}
-              active={filterFrom === button.id}>
-              {button.label}
+              key={id}
+              onClick={() => handleFromButtonClick(id)}
+              active={currentCategory === id}
+            >
+              {categories[id].label}
             </Button>
           ))}
         </div>
