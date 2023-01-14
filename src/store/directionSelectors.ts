@@ -1,5 +1,4 @@
 import { RootState } from "./index";
-
 export const getCurrentDirectionFrom = (state: RootState) =>
   state.directionSlice.currentDirectionFrom;
 
@@ -11,8 +10,19 @@ export const getCurrentCategoryTo = (state: RootState) =>
 
 export const getCategoryIds = (state: RootState) =>
   state.directionSlice.categoryIds;
+
 export const getCategories = (state: RootState) =>
   state.directionSlice.categories;
+
+export const getFilteredOptionsFrom = (state: RootState) => {
+  const directions = state.categorySlice.directions;
+
+  if (state.directionSlice.currentCategoryFrom === "all") {
+    return directions;
+  }
+
+  return directions.filter((el) => true);
+};
 
 export const filteredCategoriesFromSelector =
   (filter: string) => (state: RootState) => {

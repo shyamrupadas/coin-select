@@ -19,6 +19,7 @@ import {
   getCurrentCategoryFrom,
   getCurrentCategoryTo,
   getCurrentDirectionFrom,
+  getFilteredOptionsFrom,
 } from "./store/directionSelectors";
 import { FilterButtons } from "./components/FilterButtons";
 
@@ -48,6 +49,8 @@ export const App = () => {
   const currentCategoryTo = useSelector(getCurrentCategoryTo);
   const categoryIds = useSelector(getCategoryIds);
   const categories = useSelector(getCategories);
+
+  const filteredOptionsFrom = useSelector(getFilteredOptionsFrom);
 
   const [filterFrom, setFilterFrom] = useState<FilterType>("all");
   const [filterTo, setFilterTo] = useState<FilterType>("all");
@@ -94,13 +97,13 @@ export const App = () => {
         <div className={s.select}>
           <input type="text" />
           <select
-            value={selected}
+            // value={selected}
             onChange={(e) => {
               setSelected(e.target.value);
               resetFilterTo();
             }}
           >
-            {fromItems.map((direction) => (
+            {filteredOptionsFrom.map((direction) => (
               <option key={direction.code} value={direction.code}>
                 {direction.name}
               </option>

@@ -15,9 +15,6 @@ export const FilterButtons: FC<IFilterButtons> = ({
   currentCategory,
   categories,
 }) => {
-  console.log("ids " + ids);
-  console.log("current cat " + currentCategory);
-
   return (
     <>
       {ids.map((id: any) => (
