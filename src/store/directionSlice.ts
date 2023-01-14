@@ -13,19 +13,21 @@ import { createSlice } from '@reduxjs/toolkit';
 interface DirectionsFromState {
   directionIds: string[],
   directions: any,
-  currentCategory: string,
-  currentDirection: string,
+  currentCategoryFrom: string,
+  currentDirectionFrom: string,
   categoryIds: string[],
   categories: any,
+  currentCategoryTo: string,
 }
 
 const initialState: DirectionsFromState = {
   directionIds: [],
   directions: {},
-  currentCategory: 'all',
-  currentDirection: 'BTC',
+  currentCategoryFrom: 'all',
+  currentDirectionFrom: 'BTC',
   categoryIds: [],
   categories: {},
+  currentCategoryTo: 'all',
 };
 
 export const directionSlice = createSlice({
@@ -51,11 +53,14 @@ export const directionSlice = createSlice({
 
       state.categories = categories
     },
-    setCurrentCategory: (state, action) => {
-      state.currentCategory = action.payload
+    setCurrentCategoryFrom: (state, action) => {
+      state.currentCategoryFrom = action.payload
+    },
+    setCurrentCategoryTo: (state, action) => {
+      state.currentCategoryTo = action.payload
     }
   },
 });
 
-export const { setData, setCurrentCategory } = directionSlice.actions
+export const { setData, setCurrentCategoryFrom, setCurrentCategoryTo } = directionSlice.actions
 export default directionSlice.reducer;

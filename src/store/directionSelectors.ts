@@ -1,7 +1,7 @@
 import { RootState } from './index';
 
-export const getCurrentDirection = (state:RootState) => state.directionSlice.currentDirection
-export const getCurrentCategory = (state:RootState) => state.directionSlice.currentCategory
+export const getCurrentDirectionFrom = (state:RootState) => state.directionSlice.currentDirectionFrom
+export const getCurrentCategoryFrom = (state:RootState) => state.directionSlice.currentCategoryFrom
 export const getCategoryIds = (state:RootState) => state.directionSlice.categoryIds
 export const getCategories = (state:RootState) => state.directionSlice.categories
 

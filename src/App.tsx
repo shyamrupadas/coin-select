@@ -4,9 +4,10 @@ import { Button } from './components/Button'
 import s from './App.module.scss'
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from './store';
-import { setCurrentCategory, setData } from './store/directionSlice';
+import { setCurrentCategoryFrom, setCurrentCategoryTo, setData } from './store/directionSlice';
 import { data } from './api';
-import { getCategories, getCategoryIds, getCurrentCategory, getCurrentDirection } from './store/directionSelectors';
+import { getCategories, getCategoryIds, getCurrentCategoryFrom, getCurrentDirectionFrom } from './store/directionSelectors';
+import { FilterButtons } from './components/FilterButtons';
 
 const filterMap: any = {
   all: [],
@@ -20,13 +21,6 @@ interface IButton {
   label: string
 }
 
-const buttons: IButton[] = [
-  { id: 'all', label: 'Все' },
-  { id: 'crypto', label: 'Криптовалюты' },
-  { id: 'bank', label: 'Банки' },
-  { id: 'cash', label: 'Наличные' },
-]
-
 export type FilterType = 'all' | 'crypto' | 'bank' | 'cash'
 
 export const App = () => {
@@ -36,8 +30,9 @@ export const App = () => {
     dispatch(setData(data))
   }, [dispatch])
 
-  const currentCategory = useSelector(getCurrentCategory)
-  const currentDirection = useSelector(getCurrentDirection)
+  const currentCategoryFrom = useSelector(getCurrentCategoryFrom)
+  const currentDirectionFrom = useSelector(getCurrentDirectionFrom)
+  const currentCategoryTo = useSelector(getCurrentDirectionFrom)
   const categoryIds = useSelector(getCategoryIds)
   const categories = useSelector(getCategories)
 
@@ -53,11 +48,12 @@ export const App = () => {
     setFilterFrom(id)
     resetFilterTo()
     setSelected(fromItems[0].code)
-    dispatch(setCurrentCategory(id))
+    dispatch(setCurrentCategoryFrom(id))
   }
 
   const handleToButtonClick = (id: FilterType) => {
     setFilterTo(id)
+    dispatch(setCurrentCategoryTo(id))
   }
 
   const resetFilterTo = () => {
@@ -71,15 +67,12 @@ export const App = () => {
           <h3 className={s.header}>Отдаете</h3>
         </header>
         <div className={s.buttons}>
-          {categoryIds.map((id: any) => (
-            <Button
-              key={id}
-              onClick={() => handleFromButtonClick(id)}
-              active={currentCategory === id}
-            >
-              {categories[id].label}
-            </Button>
-          ))}
+          <FilterButtons
+            onClick={handleFromButtonClick}
+            ids={categoryIds}
+            currentCategory={currentCategoryFrom}
+            categories={categories}
+          />
         </div>
         <div className={s.select}>
           <input type="text" />
@@ -99,12 +92,13 @@ export const App = () => {
           <h3 className={s.header}>Получаете</h3>
         </header>
         <div className={s.buttons}>
-          {buttons.map(button => (
+          {categoryIds.map((id: any) => (
             <Button
-              key={button.id}
-              onClick={() => handleToButtonClick(button.id)}
-              active={filterTo === button.id}>
-              {button.label}
+              key={id}
+              onClick={() => handleToButtonClick(id)}
+              active={currentCategoryTo === id}
+              >
+              {categories[id].label}
             </Button>
           ))}
         </div>
