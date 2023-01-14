@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 // interface Direction {
 //   code: string,
@@ -11,56 +11,57 @@ import { createSlice } from '@reduxjs/toolkit';
 // }
 
 interface DirectionsFromState {
-  directionIds: string[],
-  directions: any,
-  currentCategoryFrom: string,
-  currentDirectionFrom: string,
-  categoryIds: string[],
-  categories: any,
-  currentCategoryTo: string,
+  directionIds: string[];
+  directions: any;
+  currentCategoryFrom: string;
+  currentDirectionFrom: string;
+  categoryIds: string[];
+  categories: any;
+  currentCategoryTo: string;
 }
 
 const initialState: DirectionsFromState = {
   directionIds: [],
   directions: {},
-  currentCategoryFrom: 'all',
-  currentDirectionFrom: 'BTC',
+  currentCategoryFrom: "all",
+  currentDirectionFrom: "BTC",
   categoryIds: [],
   categories: {},
-  currentCategoryTo: 'all',
+  currentCategoryTo: "all",
 };
 
 export const directionSlice = createSlice({
-  name: 'directions',
+  name: "directions",
   initialState,
   reducers: {
     setData: (state, action) => {
-      const { directions, filters, categories } = action.payload
-      if (state.directionIds.length > 0) return
+      const { directions, filters, categories } = action.payload;
+      if (state.directionIds.length > 0) return;
 
       directions.forEach((el: any) => {
-        state.directionIds.push(el.code)
-        state.directions[el.code] = { name: el.name }
-      })
+        state.directionIds.push(el.code);
+        state.directions[el.code] = { name: el.name };
+      });
 
       filters.forEach((el: any) => {
-        state.directions[el.from.code] = { to: el.to }
-      })
+        state.directions[el.from.code] = { to: el.to };
+      });
 
       Object.entries(categories).forEach((el: any) => {
-        state.categoryIds.push(el[0])
-      })
+        state.categoryIds.push(el[0]);
+      });
 
-      state.categories = categories
+      state.categories = categories;
     },
     setCurrentCategoryFrom: (state, action) => {
-      state.currentCategoryFrom = action.payload
+      state.currentCategoryFrom = action.payload;
     },
     setCurrentCategoryTo: (state, action) => {
-      state.currentCategoryTo = action.payload
-    }
+      state.currentCategoryTo = action.payload;
+    },
   },
 });
 
-export const { setData, setCurrentCategoryFrom, setCurrentCategoryTo } = directionSlice.actions
+export const { setData, setCurrentCategoryFrom, setCurrentCategoryTo } =
+  directionSlice.actions;
 export default directionSlice.reducer;
