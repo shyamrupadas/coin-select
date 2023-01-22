@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
 import { FilterType } from '../../App';
 import { getCategories, getCategoryIds } from '../../store/directionSelectors';
-import { ICategoryId } from '../../store/directionSlice';
+import { ICategoryId, IDirection } from '../../store/directionSlice';
+import { DirectionSelect } from '../DirectionSelect';
 import { FilterButtons } from '../FilterButtons';
 import s from './Panel.module.scss';
 
@@ -31,16 +32,7 @@ export function Panel({ onClick, currentCategory, onChange, options }: IPanel) {
       </div>
       <div className={s.select}>
         <input type="text" />
-        <select
-          // value={selected}
-          onChange={onChange}
-        >
-          {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
+        <DirectionSelect optionIds={options} onChange={onChange} />
       </div>
     </>
   );

@@ -31,11 +31,13 @@ export function From() {
   };
 
   return (
-    <Panel
-      onClick={handleFromButtonClick}
-      currentCategory={currentCategoryFrom}
-      onChange={handleChange}
-      options={directionsFrom}
-    />
+    <div>
+      <Panel
+        onClick={handleFromButtonClick}
+        currentCategory={currentCategoryFrom}
+        onChange={handleChange}
+        options={directionsFrom}
+      />
+    </div>
   );
 }

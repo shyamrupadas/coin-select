@@ -82,32 +82,5 @@ export function App() {
     dispatch(setCurrentCategoryTo(id));
   };
 
-  return (
-    <>
-      <From />
-      <div>
-        <header>
-          <h3 className={s.header}>Получаете</h3>
-        </header>
-        <div className={s.buttons}>
-          <FilterButtons
-            onClick={handleToButtonClick}
-            ids={categoryIds}
-            currentCategory={currentCategoryTo}
-            categories={categories}
-          />
-        </div>
-        <div className={s.select}>
-          <input type="text" />
-          <select>
-            {toItems?.map((direction) => (
-              <option key={direction.code} value={direction.code}>
-                {direction.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-    </>
-  );
+  return <From />;
 }
