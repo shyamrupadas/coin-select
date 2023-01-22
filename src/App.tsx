@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import {
   filteredCategoriesFromSelector,
   filteredCategoriesToSelector,
-} from "./store/categorySelectors";
-import { Button } from "./components/Button";
-import s from "./App.module.scss";
-import { useSelector } from "react-redux";
-import { useAppDispatch } from "./store";
+} from './store/categorySelectors';
+import { Button } from './components/Button';
+import s from './App.module.scss';
+import { useAppDispatch } from './store';
 import {
   setCurrentCategoryFrom,
   setCurrentCategoryTo,
   setData,
-} from "./store/directionSlice";
-import { data } from "./api";
+} from './store/directionSlice';
+import { data } from './api';
 import {
   getCategories,
   getCategoryIds,
@@ -20,14 +21,14 @@ import {
   getCurrentCategoryTo,
   getCurrentDirectionFrom,
   getFilteredOptionsFrom,
-} from "./store/directionSelectors";
-import { FilterButtons } from "./components/FilterButtons";
+} from './store/directionSelectors';
+import { FilterButtons } from './components/FilterButtons';
 
 const filterMap: any = {
   all: [],
-  crypto: ["BTC", "ETH", "USDTTRC"],
-  bank: ["ACRUB", "SBERRUB", "TCSRUB"],
-  cash: ["CASHUSD", "CASHRUB"],
+  crypto: ['BTC', 'ETH', 'USDTTRC'],
+  bank: ['ACRUB', 'SBERRUB', 'TCSRUB'],
+  cash: ['CASHUSD', 'CASHRUB'],
 };
 
 interface IButton {
@@ -35,9 +36,9 @@ interface IButton {
   label: string;
 }
 
-export type FilterType = "all" | "crypto" | "bank" | "cash";
+export type FilterType = 'all' | 'crypto' | 'bank' | 'cash';
 
-export const App = () => {
+export function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -52,10 +53,10 @@ export const App = () => {
 
   const filteredOptionsFrom = useSelector(getFilteredOptionsFrom);
 
-  const [filterFrom, setFilterFrom] = useState<FilterType>("all");
-  const [filterTo, setFilterTo] = useState<FilterType>("all");
+  const [filterFrom, setFilterFrom] = useState<FilterType>('all');
+  const [filterTo, setFilterTo] = useState<FilterType>('all');
 
-  const [selected, setSelected] = useState("BTC");
+  const [selected, setSelected] = useState('BTC');
 
   const fromItems = useSelector(
     filteredCategoriesFromSelector(filterMap[filterFrom])
@@ -77,7 +78,7 @@ export const App = () => {
   };
 
   const resetFilterTo = () => {
-    setFilterTo("all");
+    setFilterTo('all');
   };
 
   return (
@@ -136,4 +137,4 @@ export const App = () => {
       </div>
     </>
   );
-};
+}

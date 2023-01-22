@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import { Button } from "../Button";
-import { FilterType } from "../../App";
+import React, { FC } from 'react';
+import { Button } from '../Button';
+import { FilterType } from '../../App';
 
 interface IFilterButtons {
   onClick: (id: FilterType) => void;
