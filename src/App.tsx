@@ -87,35 +87,6 @@ export function App() {
       <From />
       <div>
         <header>
-          <h3 className={s.header}>Отдаете</h3>
-        </header>
-        <div className={s.buttons}>
-          <FilterButtons
-            onClick={handleFromButtonClick}
-            ids={categoryIds}
-            currentCategory={currentCategoryFrom}
-            categories={categories}
-          />
-        </div>
-        <div className={s.select}>
-          <input type="text" />
-          <select
-            // value={selected}
-            onChange={(e) => {
-              setSelected(e.target.value);
-              resetFilterTo();
-            }}
-          >
-            {filteredOptionsFrom.map((direction) => (
-              <option key={direction.code} value={direction.code}>
-                {direction.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-      <div>
-        <header>
           <h3 className={s.header}>Получаете</h3>
         </header>
         <div className={s.buttons}>

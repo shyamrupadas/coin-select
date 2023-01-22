@@ -27,7 +27,7 @@ export function From() {
   };
 
   const handleChange = () => {
-    console.log('test');
+    console.log('changeSelected');
   };
 
   return (

@@ -3,7 +3,7 @@ import { FilterType } from '../../App';
 import { getCategories, getCategoryIds } from '../../store/directionSelectors';
 import { ICategoryId } from '../../store/directionSlice';
 import { FilterButtons } from '../FilterButtons';
-import s from './Panel.module.css';
+import s from './Panel.module.scss';
 
 interface IPanel {
   onClick: (id: FilterType) => void;
