@@ -18,9 +18,29 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        paths: ['src'],
+      },
+    },
+  },
   rules: {
-    'import/extensions': 0,
-    'react/react-in-jsx-scope': 0,
-    'import/no-unresolved': 0,
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    'import/prefer-default-export': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'import/no-unresolved': 'off',
+    'react/jsx-filename-extension': 'off',
+    'react/button-has-type': 'off',
   },
 };

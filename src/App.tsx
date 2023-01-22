@@ -21,8 +21,9 @@ import {
   getCurrentCategoryTo,
   getCurrentDirectionFrom,
   getFilteredOptionsFrom,
-} from './store/directionSelectors';
-import { FilterButtons } from './components/FilterButtons';
+} from "./store/directionSelectors";
+import { FilterButtons } from "./components/FilterButtons";
+import { From } from "./containers/From/From";
 
 const filterMap: any = {
   all: [],
@@ -83,6 +84,7 @@ export function App() {
 
   return (
     <>
+      <From />
       <div>
         <header>
           <h3 className={s.header}>Отдаете</h3>
