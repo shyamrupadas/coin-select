@@ -1,53 +1,66 @@
-import { createSlice } from "@reduxjs/toolkit";
+/* eslint-disable no-param-reassign */
+import { createSlice } from '@reduxjs/toolkit';
 
-// interface Direction {
-//   code: string,
-//   name: string
-// }
+interface IDirection {
+  code: string;
+  name: string;
+}
 
-// interface Filter {
-//   from: Direction,
-//   to: Direction[]
-// }
+export interface IDirections {
+  [key: string]: {
+    name: string;
+    to: IDirection[];
+  };
+}
+
+export type ICategory = 'all' | 'crypto' | 'bank' | 'cash';
+
+interface ICategories {
+  [key: string]: {
+    label: string;
+    directions: string[];
+  };
+}
 
 interface DirectionsFromState {
   directionIds: string[];
-  directions: any;
+  directions: IDirections;
   currentCategoryFrom: string;
   currentDirectionFrom: string;
   categoryIds: string[];
-  categories: any;
+  categories: ICategories;
   currentCategoryTo: string;
 }
 
 const initialState: DirectionsFromState = {
   directionIds: [],
   directions: {},
-  currentCategoryFrom: "all",
-  currentDirectionFrom: "BTC",
+  currentCategoryFrom: 'all',
+  currentDirectionFrom: 'BTC',
   categoryIds: [],
   categories: {},
-  currentCategoryTo: "all",
+  currentCategoryTo: 'all',
 };
 
 export const directionSlice = createSlice({
-  name: "directions",
+  name: 'directions',
   initialState,
   reducers: {
     setData: (state, action) => {
       const { directions, filters, categories } = action.payload;
       if (state.directionIds.length > 0) return;
 
-      directions.forEach((el: any) => {
+      directions.forEach((el: IDirection) => {
         state.directionIds.push(el.code);
-        state.directions[el.code] = { name: el.name };
+        state.directions[el.code] = { name: '', to: [] };
+        state.directions[el.code].name = el.name;
       });
 
-      filters.forEach((el: any) => {
-        state.directions[el.from.code] = { to: el.to };
+      filters.forEach((el: { from: IDirection; to: IDirection[] }) => {
+        state.directions[el.from.code].to = el.to;
       });
 
-      Object.entries(categories).forEach((el: any) => {
+      Object.entries(categories).forEach((el) => {
         state.categoryIds.push(el[0]);
       });
 
