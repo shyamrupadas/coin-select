@@ -1,4 +1,6 @@
-import { RootState } from "./index";
+import { ICategory, IDirection } from './directionSlice';
+import { RootState } from './index';
+
 export const getCurrentDirectionFrom = (state: RootState) =>
   state.directionSlice.currentDirectionFrom;
 
@@ -14,10 +16,20 @@ export const getCategoryIds = (state: RootState) =>
 export const getCategories = (state: RootState) =>
   state.directionSlice.categories;
 
-export const getFilteredOptionsFrom = (state: RootState) => {
-  const directions = state.categorySlice.directions;
+export const getDirectionsFrom = (state: RootState) => {
+  if (state.directionSlice.currentCategoryFrom === 'all') {
+    return state.directionSlice.directionIds;
+  }
 
-  if (state.directionSlice.currentCategoryFrom === "all") {
+  return state.directionSlice.categories[
+    state.directionSlice.currentCategoryFrom
+  ].directions;
+};
+
+export const getFilteredOptionsFrom = (state: RootState) => {
+  const { directions } = state.categorySlice;
+
+  if (state.directionSlice.currentCategoryFrom === 'all') {
     return directions;
   }
 
@@ -26,7 +38,7 @@ export const getFilteredOptionsFrom = (state: RootState) => {
 
 export const filteredCategoriesFromSelector =
   (filter: string) => (state: RootState) => {
-    const directions = state.categorySlice.directions;
+    const { directions } = state.categorySlice;
 
     if (filter.length === 0) {
       return directions;

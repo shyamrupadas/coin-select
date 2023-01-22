@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
-interface IDirection {
+export interface IDirection {
   code: string;
   name: string;
 }
@@ -13,21 +13,23 @@ export interface IDirections {
   };
 }
 
-export type ICategory = 'all' | 'crypto' | 'bank' | 'cash';
+export type ICategoryId = 'all' | 'crypto' | 'bank' | 'cash';
+
+export interface ICategory {
+  label: ICategoryId;
+  directions: string[];
+}
 
 export interface ICategories {
-  [key: string]: {
-    label: string;
-    directions: string[];
-  };
+  [key: string]: ICategory;
 }
 
 interface DirectionsFromState {
   directionIds: string[];
   directions: IDirections;
-  currentCategoryFrom: string;
+  currentCategoryFrom: ICategoryId;
   currentDirectionFrom: string;
-  categoryIds: ICategory[];
+  categoryIds: ICategoryId[];
   categories: ICategories;
   currentCategoryTo: string;
 }

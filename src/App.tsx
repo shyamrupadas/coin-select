@@ -66,6 +66,10 @@ export function App() {
     filteredCategoriesToSelector(selected, filterMap[filterTo])
   );
 
+  const resetFilterTo = () => {
+    setFilterTo('all');
+  };
+
   const handleFromButtonClick = (id: FilterType) => {
     setFilterFrom(id);
     resetFilterTo();
@@ -76,10 +80,6 @@ export function App() {
   const handleToButtonClick = (id: FilterType) => {
     setFilterTo(id);
     dispatch(setCurrentCategoryTo(id));
-  };
-
-  const resetFilterTo = () => {
-    setFilterTo('all');
   };
 
   return (

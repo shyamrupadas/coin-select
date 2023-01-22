@@ -1,38 +1,41 @@
-import { Panel } from "../../components/Panel";
-import { FilterButtons } from "../FilterButtons";
+import { useDispatch, useSelector } from 'react-redux';
+import { FilterType } from '../../App';
+import { Panel } from '../../components/Panel';
+import {
+  // getCategories,
+  // getCategoryIds,
+  getCurrentCategoryFrom,
+  getDirectionsFrom,
+} from '../../store/directionSelectors';
+import { setCurrentCategoryFrom } from '../../store/directionSlice';
 
-export const From = () => {
-  const categoryIds = useSelector(getCategoryIds);
-  const categories = useSelector(getCategories);
+export function From() {
+  // const categoryIds = useSelector(getCategoryIds);
+  // const categories = useSelector(getCategories);
+  const currentCategoryFrom = useSelector(getCurrentCategoryFrom);
+  const directionsFrom = useSelector(getDirectionsFrom);
+
+  console.log(directionsFrom);
+
+  const dispatch = useDispatch();
+
+  const handleFromButtonClick = (id: FilterType) => {
+    // setFilterFrom(id);
+    // resetFilterTo();
+    // setSelected(fromItems[0].code);
+    dispatch(setCurrentCategoryFrom(id));
+  };
+
+  const handleChange = () => {
+    console.log('test');
+  };
 
   return (
-    <Panel />
-    // <header>
-    //   <h3 className={s.header}>Отдаете</h3>
-    // </header>
-    // <div className={s.buttons}>
-    //   <FilterButtons
-    //     onClick={handleFromButtonClick}
-    //     ids={categoryIds}
-    //     currentCategory={currentCategoryFrom}
-    //     categories={categories}
-    //   />
-    // </div>
-    // <div className={s.select}>
-    //   <input type="text" />
-    //   <select
-    //     // value={selected}
-    //     onChange={(e) => {
-    //       setSelected(e.target.value);
-    //       resetFilterTo();
-    //     }}
-    //   >
-    //     {filteredOptionsFrom.map((direction) => (
-    //       <option key={direction.code} value={direction.code}>
-    //         {direction.name}
-    //       </option>
-    //     ))}
-    //   </select>
-    // </div>
+    <Panel
+      onClick={handleFromButtonClick}
+      currentCategory={currentCategoryFrom}
+      onChange={handleChange}
+      options={directionsFrom}
+    />
   );
-};
+}

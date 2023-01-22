@@ -1,11 +1,11 @@
 import { Button } from '../Button';
 import { FilterType } from '../../App';
-import { ICategories, ICategory } from '../../store/directionSlice';
+import { ICategories, ICategoryId } from '../../store/directionSlice';
 
 interface IFilterButtons {
   onClick: (id: FilterType) => void;
   ids: FilterType[];
-  currentCategory: ICategory;
+  currentCategory: ICategoryId;
   categories: ICategories;
 }
 
