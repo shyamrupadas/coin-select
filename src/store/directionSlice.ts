@@ -15,7 +15,7 @@ export interface IDirections {
 
 export type ICategory = 'all' | 'crypto' | 'bank' | 'cash';
 
-interface ICategories {
+export interface ICategories {
   [key: string]: {
     label: string;
     directions: string[];
@@ -27,7 +27,7 @@ interface DirectionsFromState {
   directions: IDirections;
   currentCategoryFrom: string;
   currentDirectionFrom: string;
-  categoryIds: string[];
+  categoryIds: ICategory[];
   categories: ICategories;
   currentCategoryTo: string;
 }

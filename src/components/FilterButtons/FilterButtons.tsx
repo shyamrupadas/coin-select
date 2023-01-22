@@ -1,23 +1,23 @@
-import React, { FC } from 'react';
 import { Button } from '../Button';
 import { FilterType } from '../../App';
+import { ICategories, ICategory } from '../../store/directionSlice';
 
 interface IFilterButtons {
   onClick: (id: FilterType) => void;
-  ids: string[];
-  currentCategory: any;
-  categories: any;
+  ids: FilterType[];
+  currentCategory: ICategory;
+  categories: ICategories;
 }
 
-export const FilterButtons: FC<IFilterButtons> = ({
+export function FilterButtons({
   onClick,
   ids,
   currentCategory,
   categories,
-}) => {
+}: IFilterButtons) {
   return (
     <>
-      {ids.map((id: any) => (
+      {ids.map((id) => (
         <Button
           key={id}
           onClick={() => onClick(id)}
@@ -28,4 +28,4 @@ export const FilterButtons: FC<IFilterButtons> = ({
       ))}
     </>
   );
-};
+}
