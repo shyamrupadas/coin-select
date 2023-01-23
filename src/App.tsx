@@ -5,8 +5,6 @@ import {
   filteredCategoriesFromSelector,
   filteredCategoriesToSelector,
 } from './store/categorySelectors';
-import { Button } from './components/Button';
-import s from './App.module.scss';
 import { useAppDispatch } from './store';
 import {
   setCurrentCategoryFrom,
@@ -22,9 +20,8 @@ import {
   getCurrentDirectionFrom,
   getFilteredOptionsFrom,
 } from './store/directionSelectors';
-import { FilterButtons } from './components/FilterButtons';
-import { From } from './containers/From/From';
 import { PanelFrom } from './vidgets';
+import { PanelTo } from './vidgets/PanelTo';
 
 const filterMap: any = {
   all: [],
@@ -83,5 +80,10 @@ export function App() {
     dispatch(setCurrentCategoryTo(id));
   };
 
-  return <PanelFrom />;
+  return (
+    <>
+      <PanelFrom />
+      <PanelTo />
+    </>
+  );
 }

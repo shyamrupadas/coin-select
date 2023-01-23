@@ -12,9 +12,9 @@ import {
   IDirection,
   setCurrentCategoryFrom,
 } from '../../store/directionSlice';
-import s from './PanelFrom.module.scss';
+import s from './PanelTo.module.scss';
 
-export function PanelFrom() {
+export function PanelTo() {
   const currentCategoryFrom = useSelector(getCurrentCategoryFrom);
   const directionsFrom = useSelector(getDirectionsFrom);
   const categoryIds = useSelector(getCategoryIds);
@@ -33,7 +33,7 @@ export function PanelFrom() {
   return (
     <>
       <header>
-        <h3 className={s.header}>Отдаете</h3>
+        <h3 className={s.header}>Получаете</h3>
       </header>
       <div className={s.buttons}>
         <FilterButtons
