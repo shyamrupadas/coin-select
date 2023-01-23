@@ -24,6 +24,7 @@ import {
 } from './store/directionSelectors';
 import { FilterButtons } from './components/FilterButtons';
 import { From } from './containers/From/From';
+import { PanelFrom } from './vidgets';
 
 const filterMap: any = {
   all: [],
@@ -82,5 +83,5 @@ export function App() {
     dispatch(setCurrentCategoryTo(id));
   };
 
-  return <From />;
+  return <PanelFrom />;
 }

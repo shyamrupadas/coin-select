@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
+import { Select } from '../../shared';
 import { getDirections } from '../../store/directionSelectors';
-import { Select } from '../Select';
 import s from './DirectionSelect.module.scss';
 
 interface DirectionSelectProps {
@@ -13,7 +13,7 @@ export function DirectionSelect({ onChange, optionIds }: DirectionSelectProps) {
 
   return (
     <div className={s.select}>
-      <Select onChange={onChange} options={options} />
+      <Select onChange={onChange} options={optionIds} />
     </div>
   );
 }

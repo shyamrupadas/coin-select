@@ -26,8 +26,9 @@ export const getDirectionsFrom = (state: RootState) => {
   ].directions;
 };
 
-export const getDirections = (ids: string[]) => (state: RootState) =>
-  ids.map((id) => state.directionSlice.directions[id].name);
+export const getDirections = (ids: string[]) => (state: RootState) => {
+  return ids.map((id) => state.directionSlice.directions[id].name);
+};
 
 export const getFilteredOptionsFrom = (state: RootState) => {
   const { directions } = state.categorySlice;

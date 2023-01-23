@@ -1,5 +1,5 @@
-import { Button } from '../Button';
 import { FilterType } from '../../App';
+import { Button } from '../../shared';
 import { ICategories, ICategoryId } from '../../store/directionSlice';
 
 interface IFilterButtons {

@@ -12,23 +12,8 @@ import { setCurrentCategoryFrom } from '../../store/directionSlice';
 export function From() {
   // const categoryIds = useSelector(getCategoryIds);
   // const categories = useSelector(getCategories);
-  const currentCategoryFrom = useSelector(getCurrentCategoryFrom);
-  const directionsFrom = useSelector(getDirectionsFrom);
 
   console.log(directionsFrom);
-
-  const dispatch = useDispatch();
-
-  const handleFromButtonClick = (id: FilterType) => {
-    // setFilterFrom(id);
-    // resetFilterTo();
-    // setSelected(fromItems[0].code);
-    dispatch(setCurrentCategoryFrom(id));
-  };
-
-  const handleChange = () => {
-    console.log('changeSelected');
-  };
 
   return (
     <div>

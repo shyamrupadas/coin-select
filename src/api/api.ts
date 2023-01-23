@@ -303,7 +303,7 @@ const filters = [
 const categories = {
   all: { label: 'Все', directions: [] },
   crypto: { label: 'Криптовалюты', directions: ['BTC', 'ETH', 'USDTTRC'] },
-  bank: { label: 'Банки', directions: ['ACRUB', 'SBERRUB', 'TCSRUB'] },
+  bank: { label: 'Банки', directions: ['ACRUB', 'SBERRUB', 'TCSBRUB'] },
   cash: { label: 'Наличные', directions: ['CASHUSD', 'CASHRUB'] },
 };
 
