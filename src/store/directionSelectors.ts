@@ -17,58 +17,30 @@ export const getCategories = (state: RootState) =>
   state.directionSlice.categories;
 
 export const getDirectionsFrom = (state: RootState) => {
+  let ids = [];
+
   if (state.directionSlice.currentCategoryFrom === 'all') {
-    return state.directionSlice.directionIds;
+    ids = state.directionSlice.directionIds;
+  } else {
+    ids =
+      state.directionSlice.categories[state.directionSlice.currentCategoryFrom]
+        .directions;
   }
 
-  return state.directionSlice.categories[
-    state.directionSlice.currentCategoryFrom
-  ].directions;
+  return ids.map((id) => ({
+    code: id,
+    name: state.directionSlice.directions[id].name,
+  }));
 };
 
 export const getDirectionsTo = (state: RootState) => {
-  if (state.directionSlice.currentCategoryTo === 'all') {
-    return state.directionSlice.directionIds;
-  }
+  const directions =
+    state.directionSlice.directions[state.directionSlice.currentDirectionFrom]
+      ?.to;
 
-  return state.directionSlice.categories[state.directionSlice.currentCategoryTo]
-    .directions;
+  return directions;
 };
 
 export const getDirections = (ids: string[]) => (state: RootState) => {
   return ids.map((id) => state.directionSlice.directions[id].name);
 };
-
-export const getFilteredOptionsFrom = (state: RootState) => {
-  const { directions } = state.categorySlice;
-
-  if (state.directionSlice.currentCategoryFrom === 'all') {
-    return directions;
-  }
-
-  return directions.filter((el) => true);
-};
-
-export const filteredCategoriesFromSelector =
-  (filter: string) => (state: RootState) => {
-    const { directions } = state.categorySlice;
-
-    if (filter.length === 0) {
-      return directions;
-    }
-
-    return directions.filter((el) => filter.includes(el.code));
-  };
-
-export const filteredCategoriesToSelector =
-  (categoryFrom: string, filter: string) => (state: RootState) => {
-    const directionsFilter = state.categorySlice.filters.find(
-      (el) => el.from.code === categoryFrom
-    )?.to;
-
-    if (filter.length === 0) {
-      return directionsFilter;
-    }
-
-    return directionsFilter?.filter((el) => filter.includes(el.code));
-  };

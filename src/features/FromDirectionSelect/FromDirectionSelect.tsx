@@ -1,16 +1,18 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Select } from '../../shared';
 import {
   getDirections,
   getDirectionsFrom,
 } from '../../store/directionSelectors';
+import { setCurrentDirectionFrom } from '../../store/directionSlice';
 
 export function FromDirectionSelect() {
-  const ids = useSelector(getDirectionsFrom);
-  const options = useSelector(getDirections(ids));
+  const options = useSelector(getDirectionsFrom);
 
-  const handleChange = () => {
-    console.log('changeSelected');
+  const dispatch = useDispatch();
+
+  const handleChange = (direction: string) => {
+    dispatch(setCurrentDirectionFrom(direction));
   };
 
   return <Select onChange={handleChange} options={options} />;

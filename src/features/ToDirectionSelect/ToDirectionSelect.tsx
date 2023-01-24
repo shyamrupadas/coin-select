@@ -1,13 +1,14 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Select } from '../../shared';
-import { getDirections, getDirectionsTo } from '../../store/directionSelectors';
+import { getDirectionsTo } from '../../store/directionSelectors';
+import { setCurrentDirectionFrom } from '../../store/directionSlice';
 
 export function ToDirectionSelect() {
-  const ids = useSelector(getDirectionsTo);
-  const options = useSelector(getDirections(ids));
+  const options = useSelector(getDirectionsTo);
 
-  const handleChange = () => {
-    console.log('changeSelected');
+  const handleChange = (direction: string) => {
+    // Just add busines logic you want
+    console.log(`set direction: ${direction}`);
   };
 
   return <Select onChange={handleChange} options={options} />;

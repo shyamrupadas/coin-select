@@ -74,9 +74,16 @@ export const directionSlice = createSlice({
     setCurrentCategoryTo: (state, action) => {
       state.currentCategoryTo = action.payload;
     },
+    setCurrentDirectionFrom: (state, action) => {
+      state.currentDirectionFrom = action.payload;
+    },
   },
 });
 
-export const { setData, setCurrentCategoryFrom, setCurrentCategoryTo } =
-  directionSlice.actions;
+export const {
+  setData,
+  setCurrentCategoryFrom,
+  setCurrentCategoryTo,
+  setCurrentDirectionFrom,
+} = directionSlice.actions;
 export default directionSlice.reducer;
