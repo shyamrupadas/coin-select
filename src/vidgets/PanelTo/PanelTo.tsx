@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { FilterType } from '../../App';
-import { DirectionSelect, FromFilterButtons } from '../../features';
+import { FromDirectionSelect, FromFilterButtons } from '../../features';
 import {
   getCategories,
   getCategoryIds,
@@ -39,7 +39,10 @@ export function PanelTo() {
       </div>
       <div className={s.select}>
         <input type="text" />
-        <DirectionSelect optionIds={directionsFrom} onChange={handleChange} />
+        <FromDirectionSelect
+          optionIds={directionsFrom}
+          onChange={handleChange}
+        />
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { DirectionSelect } from '../../features';
+import { FromDirectionSelect } from '../../features/FromDirectionSelect';
 import { FromFilterButtons } from '../../features/FromFilterButtons';
 import { getDirectionsFrom } from '../../store/directionSelectors';
 import s from './PanelFrom.module.scss';
@@ -19,7 +19,10 @@ export function PanelFrom() {
       <FromFilterButtons />
       <div className={s.select}>
         <input type="text" />
-        <DirectionSelect optionIds={directionsFrom} onChange={handleChange} />
+        <FromDirectionSelect
+          optionIds={directionsFrom}
+          onChange={handleChange}
+        />
       </div>
     </>
   );
