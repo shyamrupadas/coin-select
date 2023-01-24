@@ -1,17 +1,17 @@
 import { useSelector } from 'react-redux';
 import { Select } from '../../shared';
-import { getDirections } from '../../store/directionSelectors';
+import {
+  getDirections,
+  getDirectionsFrom,
+} from '../../store/directionSelectors';
 
-interface DirectionSelectProps {
-  onChange: () => void;
-  optionIds: string[];
-}
+export function FromDirectionSelect() {
+  const ids = useSelector(getDirectionsFrom);
+  const options = useSelector(getDirections(ids));
 
-export function FromDirectionSelect({
-  onChange,
-  optionIds,
-}: DirectionSelectProps) {
-  const options = useSelector(getDirections(optionIds));
+  const handleChange = () => {
+    console.log('changeSelected');
+  };
 
-  return <Select onChange={onChange} options={optionIds} />;
+  return <Select onChange={handleChange} options={options} />;
 }
