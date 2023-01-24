@@ -1,2 +1,2 @@
-export { FilterButtons } from './FilterButtons';
+export { FromFilterButtons } from './FromFilterButtons';
 export { DirectionSelect } from './DirectionSelect';

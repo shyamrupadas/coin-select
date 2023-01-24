@@ -1,21 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { FilterType } from '../../App';
-import { DirectionSelect, FilterButtons } from '../../features';
+import { DirectionSelect, FromFilterButtons } from '../../features';
 import {
   getCategories,
   getCategoryIds,
-  getCurrentCategoryFrom,
+  getCurrentCategoryTo,
   getDirectionsFrom,
 } from '../../store/directionSelectors';
 import {
-  ICategoryId,
-  IDirection,
   setCurrentCategoryFrom,
+  setCurrentCategoryTo,
 } from '../../store/directionSlice';
 import s from './PanelTo.module.scss';
 
 export function PanelTo() {
-  const currentCategoryFrom = useSelector(getCurrentCategoryFrom);
+  const currentCategoryFrom = useSelector(getCurrentCategoryTo);
   const directionsFrom = useSelector(getDirectionsFrom);
   const categoryIds = useSelector(getCategoryIds);
   const categories = useSelector(getCategories);
@@ -23,7 +22,7 @@ export function PanelTo() {
   const dispatch = useDispatch();
 
   const handleFromButtonClick = (id: FilterType) => {
-    dispatch(setCurrentCategoryFrom(id));
+    dispatch(setCurrentCategoryTo(id));
   };
 
   const handleChange = () => {
@@ -36,12 +35,7 @@ export function PanelTo() {
         <h3 className={s.header}>Получаете</h3>
       </header>
       <div className={s.buttons}>
-        <FilterButtons
-          onClick={handleFromButtonClick}
-          ids={categoryIds}
-          currentCategory={currentCategoryFrom}
-          categories={categories}
-        />
+        <FromFilterButtons />
       </div>
       <div className={s.select}>
         <input type="text" />

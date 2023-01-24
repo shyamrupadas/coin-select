@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   filteredCategoriesFromSelector,
   filteredCategoriesToSelector,
 } from './store/categorySelectors';
-import { useAppDispatch } from './store';
 import {
   setCurrentCategoryFrom,
   setCurrentCategoryTo,
@@ -38,48 +37,11 @@ interface IButton {
 }
 
 export function App() {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setData(data));
   }, [dispatch]);
-
-  const currentCategoryFrom = useSelector(getCurrentCategoryFrom);
-  const currentDirectionFrom = useSelector(getCurrentDirectionFrom);
-  const currentCategoryTo = useSelector(getCurrentCategoryTo);
-  const categoryIds = useSelector(getCategoryIds);
-  const categories = useSelector(getCategories);
-
-  const filteredOptionsFrom = useSelector(getFilteredOptionsFrom);
-
-  const [filterFrom, setFilterFrom] = useState<FilterType>('all');
-  const [filterTo, setFilterTo] = useState<FilterType>('all');
-
-  const [selected, setSelected] = useState('BTC');
-
-  const fromItems = useSelector(
-    filteredCategoriesFromSelector(filterMap[filterFrom])
-  );
-  const toItems = useSelector(
-    filteredCategoriesToSelector(selected, filterMap[filterTo])
-  );
-
-  const resetFilterTo = () => {
-    setFilterTo('all');
-  };
-
-  const handleFromButtonClick = (id: FilterType) => {
-    setFilterFrom(id);
-    resetFilterTo();
-    setSelected(fromItems[0].code);
-    dispatch(setCurrentCategoryFrom(id));
-  };
-
-  const handleToButtonClick = (id: FilterType) => {
-    setFilterTo(id);
-    dispatch(setCurrentCategoryTo(id));
-  };
-
   return (
     <>
       <PanelFrom />
