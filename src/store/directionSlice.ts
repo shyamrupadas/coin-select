@@ -31,7 +31,7 @@ interface DirectionsFromState {
   currentDirectionFrom: string;
   categoryIds: ICategoryId[];
   categories: ICategories;
-  currentCategoryTo: string;
+  currentCategoryTo: ICategoryId;
 }
 
 const initialState: DirectionsFromState = {

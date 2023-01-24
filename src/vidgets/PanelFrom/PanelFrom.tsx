@@ -1,5 +1,4 @@
-import { FromDirectionSelect } from '../../features/FromDirectionSelect';
-import { FromFilterButtons } from '../../features/FromFilterButtons';
+import { FromDirectionSelect, FromFilterButtons } from '../../features';
 import s from './PanelFrom.module.scss';
 
 export function PanelFrom() {
