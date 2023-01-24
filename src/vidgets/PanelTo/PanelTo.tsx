@@ -1,4 +1,4 @@
-import { FromDirectionSelect, ToFilterButtons } from '../../features';
+import { ToDirectionSelect, ToFilterButtons } from '../../features';
 import s from './PanelTo.module.scss';
 
 export function PanelTo() {
@@ -10,7 +10,7 @@ export function PanelTo() {
       <ToFilterButtons />
       <div className={s.select}>
         <input type="text" />
-        <FromDirectionSelect />
+        <ToDirectionSelect />
       </div>
     </>
   );

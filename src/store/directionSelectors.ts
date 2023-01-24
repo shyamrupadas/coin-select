@@ -26,6 +26,15 @@ export const getDirectionsFrom = (state: RootState) => {
   ].directions;
 };
 
+export const getDirectionsTo = (state: RootState) => {
+  if (state.directionSlice.currentCategoryTo === 'all') {
+    return state.directionSlice.directionIds;
+  }
+
+  return state.directionSlice.categories[state.directionSlice.currentCategoryTo]
+    .directions;
+};
+
 export const getDirections = (ids: string[]) => (state: RootState) => {
   return ids.map((id) => state.directionSlice.directions[id].name);
 };
