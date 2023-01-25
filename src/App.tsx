@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { setData } from './store/directionSlice';
 import { data } from './api';
 import { PanelFrom } from './vidgets';
