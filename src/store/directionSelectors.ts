@@ -1,3 +1,4 @@
+import { IDirection } from './directionSlice';
 import { RootState } from './index';
 
 export const getCurrentDirectionFrom = (state: RootState) =>
@@ -37,11 +38,27 @@ export const getDirectionsTo = (state: RootState) => {
     state.directionSlice.directions[state.directionSlice.currentDirectionFrom]
       ?.to;
 
-  if (state.directionSlice.currentCategoryTo === 'all') {
-    return directions;
+  const filteredDirections: IDirection[] = [];
+  const possibleDirections = state.directionSlice.directionIds;
+  const currentCategory = state.directionSlice.currentCategoryTo;
+  const currentCategoryDirections =
+    state.directionSlice.categories[currentCategory]?.directions;
+
+  if (currentCategory === 'all') {
+    directions?.forEach((el) => {
+      if (possibleDirections.includes(el.code)) {
+        filteredDirections.push(el);
+      }
+    });
+  } else {
+    directions?.forEach((el) => {
+      if (currentCategoryDirections.includes(el.code)) {
+        filteredDirections.push(el);
+      }
+    });
   }
 
-  return directions;
+  return filteredDirections;
 };
 
 export const getDirections = (ids: string[]) => (state: RootState) => {
