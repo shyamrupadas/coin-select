@@ -1,4 +1,3 @@
-import { ICategory, IDirection } from './directionSlice';
 import { RootState } from './index';
 
 export const getCurrentDirectionFrom = (state: RootState) =>
@@ -37,6 +36,10 @@ export const getDirectionsTo = (state: RootState) => {
   const directions =
     state.directionSlice.directions[state.directionSlice.currentDirectionFrom]
       ?.to;
+
+  if (state.directionSlice.currentCategoryTo === 'all') {
+    return directions;
+  }
 
   return directions;
 };
