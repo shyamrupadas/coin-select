@@ -45,7 +45,7 @@ yarn dev
 
 Пример интерфейса:
 
-![Reference](image.png?raw=true)
+![Reference](./public/image.png?raw=true)
 
 Первый массив - directions  
 [
