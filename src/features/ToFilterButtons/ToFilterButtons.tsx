@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { FilterType } from '../../App';
 import { FilterButtons } from '../../entities/FilterButtons';
 import {
   getCategories,
@@ -15,7 +14,7 @@ export function ToFilterButtons() {
 
   const dispatch = useDispatch();
 
-  const handleFromButtonClick = (id: FilterType) => {
+  const handleFromButtonClick = (id: string) => {
     dispatch(setCurrentCategoryTo(id));
   };
 

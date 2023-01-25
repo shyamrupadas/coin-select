@@ -29,7 +29,7 @@ interface DirectionsFromState {
   directions: IDirections;
   currentCategoryFrom: ICategoryId;
   currentDirectionFrom: string;
-  categoryIds: ICategoryId[];
+  categoryIds: string[];
   categories: ICategories;
   currentCategoryTo: ICategoryId;
 }

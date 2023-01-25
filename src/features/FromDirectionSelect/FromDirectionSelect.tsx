@@ -1,9 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Select } from '../../shared';
-import {
-  getDirections,
-  getDirectionsFrom,
-} from '../../store/directionSelectors';
+import { getDirectionsFrom } from '../../store/directionSelectors';
 import { setCurrentDirectionFrom } from '../../store/directionSlice';
 
 export function FromDirectionSelect() {

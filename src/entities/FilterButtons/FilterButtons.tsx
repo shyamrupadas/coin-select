@@ -1,10 +1,9 @@
-import { FilterType } from '../../App';
 import { Button } from '../../shared';
 import { ICategories, ICategoryId } from '../../store/directionSlice';
 
 interface IFilterButtons {
-  onClick: (id: FilterType) => void;
-  ids: FilterType[];
+  onClick: (id: string) => void;
+  ids: string[];
   currentCategory: ICategoryId;
   categories: ICategories;
 }

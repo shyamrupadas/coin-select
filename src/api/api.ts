@@ -1,3 +1,5 @@
+import { ICategoryId, IDirection } from '../store/directionSlice';
+
 const directions = [
   {
     code: 'BTC',
